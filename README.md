@@ -20,7 +20,7 @@
 - [贡献](#贡献)
 - [致谢](#致谢)
 - [协议](#协议)
-- 
+-
 
 ## 特性
 
@@ -28,13 +28,13 @@
 A/B 测试、金丝雀发布(灰度发布)、蓝绿部署、限流限速、抵御恶意攻击、监控报警、服务可观测性、服务治理等。
 
 
-<font size="3" color="#dd0000">插件文档待完善</font> 
+<font size="3" color="#dd0000">插件文档待完善</font>
 
 - **全平台**
 
   - 云原生: 平台无关，没有供应商锁定，无论裸机还是 Kubernetes，APISIX 都可以运行。
   - 运行环境: OpenResty
-  - 
+  -
 - **多协议**
   - [gRPC 代理](doc/zh-cn/grpc-proxy.md)：通过 APISIX 代理 gRPC 连接，并使用 APISIX 的大部分特性管理你的 gRPC 服务。
   - [gRPC 协议转换](doc/zh-cn/plugins/grpc-transcode.md)：支持协议的转换，这样客户端可以通过 HTTP/JSON 来访问你的 gRPC API。
@@ -42,7 +42,7 @@ A/B 测试、金丝雀发布(灰度发布)、蓝绿部署、限流限速、抵�
   - Proxy Protocol
   - HTTP(S) 反向代理
   - [SSL](doc/zh-cn/https.md)：动态加载 SSL 证书
-  - 
+  -
 - **全动态能力**
 - **精细化路由**
 - **安全防护**
@@ -68,27 +68,27 @@ CentOS 7, Ubuntu 16.04, Ubuntu 18.04, Debian 9, Debian 10, macOS
 
 1. 源码编译（适用所有系统）
    - 安装运行时依赖：OpenResty 和 etcd，以及编译的依赖：luarocks。参考[依赖安装文档](https://github.com/apache/apisix/blob/master/doc/zh-cn/install-dependencies.md)
-   
+
    - 下载最新的源码发布包：
-   
+
      ```shell
      git clone  xxx.git
      ```
-   
-     
+
+
 
    - 编译部署
-   
+
      ```shell
-      $ cd  api-gateway 
+      $ cd  api-gateway
       # 安装运行时依赖的 Lua 库：
       $ make deps
       $ \cp -arp .
      /usr/local/openresty/nginx/
      ```
-   
-     
-   
+
+
+
    - 启动 :
      ```shell
      $ /bin/systemctl start openresty.service
@@ -101,14 +101,14 @@ CentOS 7, Ubuntu 16.04, Ubuntu 18.04, Debian 9, Debian 10, macOS
    $ docker build . -t gateway_image
    $ docker-compose  up -d
    ```
-   
-### 针对开发者 
+
+### 针对开发者
 > 开发者去看apisix的文档，写的比较完整
 
 #### 检查
 ```
 #安装
-$ luarocks install luacheck 
+$ luarocks install luacheck
 $ luacheck -q gateway
 ```
 
@@ -118,10 +118,10 @@ $ luacheck -q gateway
 
 ```bash
 # 安装wrk
-$ git clone https://github.com/wg/wrk.git 
+$ git clone https://github.com/wg/wrk.git
 $ cd wrk && make
 $ cp wrk /bin/
-$ sh benchmark/run-wrk.sh 
+$ sh benchmark/run-wrk.sh
 
 ```
 
@@ -152,8 +152,8 @@ AB测试 1核心 RPS 14000  4核心24000 ，token和rbac验证RPS分别为 10000
 
 - [x] 服务发现，动态路由
 - [x] 自动生成 requestId，方便链路跟踪
-- [x] 控制面板 
-- [x] gRPC 代理  
+- [x] 控制面板
+- [x] gRPC 代理
 - [x] jwt  用户登录认证
 - [x] rbac   用户登录认证鉴权
 - [ ] 动态ip防火墙
@@ -163,7 +163,7 @@ AB测试 1核心 RPS 14000  4核心24000 ，token和rbac验证RPS分别为 10000
 - [x] cors跨域
 - [ ] 接口协议加解密
 - [ ] 统一配置管理
-- [ ] 外部日志记录 
+- [ ] 外部日志记录
 
 
 ##### 限流器
@@ -212,10 +212,6 @@ AB测试 1核心 RPS 14000  4核心24000 ，token和rbac验证RPS分别为 10000
 > 请注意 `allow_credential` 是一个很敏感的选项，谨慎选择开启。开启之后，其他参数默认的 `*` 将失效，你必须显式指定它们的值。
 > 使用 `**` 时要充分理解它引入了一些安全隐患，比如 CSRF，所以确保这样的安全等级符合自己预期再使用。
 参考文档和代码 `https://github.com/apache/apisix/blob/master/docs/zh/latest/plugins/cors.md`
-
-## 控制面板
-http://localhost:8888/dashboard
-
 
 ## 鸣谢
 

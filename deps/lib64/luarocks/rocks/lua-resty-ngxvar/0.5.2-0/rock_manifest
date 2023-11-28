@@ -1,0 +1,16 @@
+rock_manifest = {
+   doc = {
+      LICENSE = "86d3f3a95c324c9479bd8986968f4327",
+      ["README.md"] = "615e23335da278e611b7ed6f90d43cee"
+   },
+   lua = {
+      resty = {
+         ngxvar = {
+            ["http.lua"] = "81def76eb48065dfda5ee513c9189b56",
+            ["stream.lua"] = "ce85430397999c7357f6618af6b23f02"
+         },
+         ["ngxvar.lua"] = "07a8b674a8f8b216da77889770b19acf"
+      }
+   },
+   ["lua-resty-ngxvar-0.5.2-0.rockspec"] = "ca4d0b1cd45a078078535562023d3db8"
+}

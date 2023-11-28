@@ -1,0 +1,24 @@
+rock_manifest = {
+   doc = {
+      ["CHANGES.md"] = "439c13df1fd943999581e27d312b10b3",
+      LICENSE = "e8cfd34e7c34a66443e86eab1cd20e58",
+      ["README.md"] = "b64339774c59b0eb409769f305a87151",
+      licenses = "d41d8cd98f00b204e9800998ecf8427e",
+      ["release.md"] = "bcf8637be91db502c81d8ead5e1484cb"
+   },
+   lua = {
+      skywalking = {
+         ["client.lua"] = "1fb4c7d860b4c652de2fa12b89fbeac0",
+         ["correlation_context.lua"] = "2b1b879e3eaaf97380ca0e350dc7bae3",
+         ["management.lua"] = "fd3bb0cf4dc8c05de39dc7e1b0c6d79f",
+         ["segment.lua"] = "659e54c7f68ab448085d89ca6162c83a",
+         ["segment_ref.lua"] = "a94d4ee8a8fb9ec494dc6c456dc824f5",
+         ["span.lua"] = "64b0543e7f2d892a4f1822d582aa6c75",
+         ["span_layer.lua"] = "e646504cb2194b8ed151ed3bb528bf61",
+         ["tracer.lua"] = "ec50d595d5348a50864ac5b7ec7420a6",
+         ["tracing_context.lua"] = "90722ba6255dfe3d47e961dca3155518",
+         ["util.lua"] = "071cab07b145cd861f759455d9d8d11e"
+      }
+   },
+   ["skywalking-nginx-lua-0.3-0.rockspec"] = "af41901d7e12f32e5aba9a746daf8af0"
+}

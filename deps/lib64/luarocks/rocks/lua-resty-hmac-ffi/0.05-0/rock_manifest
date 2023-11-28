@@ -1,0 +1,11 @@
+rock_manifest = {
+   doc = {
+      ["README.markdown"] = "a0bfe06b489ea5293c79e675c0bb4540"
+   },
+   lua = {
+      resty = {
+         ["hmac.lua"] = "e9d7934d0d50529cae9f1bfb472c266c"
+      }
+   },
+   ["lua-resty-hmac-ffi-0.05-0.rockspec"] = "4919fabe13aa09d0326f846b6e85d897"
+}

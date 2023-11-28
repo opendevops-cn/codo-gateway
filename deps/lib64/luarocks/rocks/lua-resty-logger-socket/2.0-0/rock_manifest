@@ -1,0 +1,13 @@
+rock_manifest = {
+   doc = {
+      ["README.md"] = "6910886136dddcf58e2048706a97ed5a"
+   },
+   lua = {
+      resty = {
+         logger = {
+            ["socket.lua"] = "3672f4a33584974957f20ac0ec1a2ad0"
+         }
+      }
+   },
+   ["lua-resty-logger-socket-2.0-0.rockspec"] = "ee8bb9df5edabfeb6318956daeafc092"
+}

@@ -1,0 +1,20 @@
+rock_manifest = {
+   doc = {
+      LICENSE = "d47729e1a926c24c4a378db9d8016fd9",
+      ["README.md"] = "5ca8d46ab3c6dfb0264c89c89b942429"
+   },
+   ["graphql-0.0.2-1.rockspec"] = "ffbfb334ceb5d34efdf68c2ce167ff41",
+   lua = {
+      graphql = {
+         ["execute.lua"] = "87fcb0a9f841c5d016799517a1c44cb5",
+         ["init.lua"] = "106307a4661f7d5d3d530bbdea8eb7e2",
+         ["introspection.lua"] = "5684253a0e0a41e60a47e5afd6743056",
+         ["parse.lua"] = "445e4f252dddbf0218db91f4d4baa809",
+         ["rules.lua"] = "3dece2b014d6f754fd4ebb0d7fc72ae1",
+         ["schema.lua"] = "604fdf8ee61d5b87dcfea6f77d665a58",
+         ["types.lua"] = "c0bdd4b795eccdca0c76da7370b95246",
+         ["util.lua"] = "35927b296bb9321fcaf0240afe63b6ca",
+         ["validate.lua"] = "ebd55ce03a0d8b35d44006674b301b6d"
+      }
+   }
+}

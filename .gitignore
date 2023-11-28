@@ -1,0 +1,17 @@
+/proxy_temp/
+/scgi_temp/
+/uwsgi_temp/
+.idea/
+*.log
+.un~
+nginx.pid
+t/servroot
+conf/app-dev.json
+#deps
+
+.travis/
+!.travis/ASF-Release.cfg
+bin/lj-releng
+
+benchmark/out/
+!benchmark/server/conf/nginx.conf

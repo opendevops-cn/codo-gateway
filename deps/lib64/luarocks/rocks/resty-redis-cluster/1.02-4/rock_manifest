@@ -1,0 +1,13 @@
+rock_manifest = {
+   doc = {
+      LICENSE = "694ad992137b766fbf3f2ed797cd712d",
+      ["README.md"] = "b6b70d2d0358c6f3b65eb64bb6cbc662"
+   },
+   lua = {
+      resty = {
+         ["rediscluster.lua"] = "6489bb7b864be67b1e34c4f095a787d7",
+         ["xmodem.lua"] = "a71b1ce73cd2f6677aa47840ba53b765"
+      }
+   },
+   ["resty-redis-cluster-1.02-4.rockspec"] = "cd3d0cba4199b644d73846b82995aa0b"
+}

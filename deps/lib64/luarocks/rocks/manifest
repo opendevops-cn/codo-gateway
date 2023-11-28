@@ -1,0 +1,1153 @@
+commands = {}
+dependencies = {
+   base64 = {
+      ["1.5-2"] = {}
+   },
+   dkjson = {
+      ["2.5-2"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }, {
+                  op = "<",
+                  version = {
+                     5, 4, string = "5.4"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   graphql = {
+      ["0.0.2-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }, {
+            constraints = {},
+            name = "lpeg"
+         }
+      }
+   },
+   jsonschema = {
+      ["0.9.3-0"] = {
+         {
+            constraints = {},
+            name = "net-url"
+         }
+      }
+   },
+   lpeg = {
+      ["1.0.2-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-protobuf"] = {
+      ["0.3.1-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-balancer"] = {
+      ["0.02rc5-0"] = {}
+   },
+   ["lua-resty-cookie"] = {
+      ["0.1.0-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-etcd"] = {
+      ["1.4.3-0"] = {
+         {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     0, 15, string = "0.15"
+                  }
+               }
+            },
+            name = "lua-resty-http"
+         }, {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     0, 1, string = "0.1"
+                  }
+               }
+            },
+            name = "lua-typeof"
+         }
+      }
+   },
+   ["lua-resty-expr"] = {
+      ["1.0.0-0"] = {}
+   },
+   ["lua-resty-healthcheck-api7"] = {
+      ["2.2.0-0"] = {
+         {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     1, 0, 0, string = "1.0.0"
+                  }
+               }
+            },
+            name = "lua-resty-worker-events"
+         }
+      }
+   },
+   ["lua-resty-hmac-ffi"] = {
+      ["0.05-0"] = {
+         {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-http"] = {
+      ["0.15-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-ipmatcher"] = {
+      ["0.6-0"] = {}
+   },
+   ["lua-resty-jit-uuid"] = {
+      ["0.0.7-2"] = {}
+   },
+   ["lua-resty-jwt"] = {
+      ["0.2.0-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-kafka"] = {
+      ["0.07-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-logger-socket"] = {
+      ["2.0-0"] = {}
+   },
+   ["lua-resty-ngxvar"] = {
+      ["0.5.2-0"] = {}
+   },
+   ["lua-resty-openidc"] = {
+      ["1.7.2-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }, {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 8, string = "0.08"
+                  }
+               }
+            },
+            name = "lua-resty-http"
+         }, {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     2, 8, string = "2.8"
+                  }
+               }
+            },
+            name = "lua-resty-session"
+         }, {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 2, 0, string = "0.2.0"
+                  }
+               }
+            },
+            name = "lua-resty-jwt"
+         }
+      }
+   },
+   ["lua-resty-prometheus"] = {
+      ["1.1-0"] = {}
+   },
+   ["lua-resty-radixtree"] = {
+      ["2.5-0"] = {
+         {
+            constraints = {},
+            name = "lua-resty-ipmatcher"
+         }, {
+            constraints = {
+               {
+                  op = "==",
+                  version = {
+                     1, 0, 0, string = "1.0.0"
+                  }
+               }
+            },
+            name = "lua-resty-expr"
+         }
+      }
+   },
+   ["lua-resty-session"] = {
+      ["2.24-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-template"] = {
+      ["1.9-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["lua-resty-worker-events"] = {
+      ["1.0.0-1"] = {}
+   },
+   ["lua-tinyyaml"] = {
+      ["1.0-0"] = {}
+   },
+   ["lua-typeof"] = {
+      ["0.1-0"] = {}
+   },
+   luafilesystem = {
+      ["1.7.0-2"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["net-url"] = {
+      ["0.9-1"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["opentracing-openresty"] = {
+      ["0.1-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     5, 1, string = "5.1"
+                  }
+               }
+            },
+            name = "lua"
+         }
+      }
+   },
+   ["resty-redis-cluster"] = {
+      ["1.02-4"] = {}
+   },
+   ["skywalking-nginx-lua"] = {
+      ["0.3-0"] = {
+         {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 15, string = "0.15"
+                  }
+               }
+            },
+            name = "lua-resty-http"
+         }, {
+            constraints = {
+               {
+                  op = ">=",
+                  version = {
+                     0, 0, 7, string = "0.0.7"
+                  }
+               }
+            },
+            name = "lua-resty-jit-uuid"
+         }
+      }
+   }
+}
+modules = {
+   base64 = {
+      "base64/1.5-2"
+   },
+   dkjson = {
+      "dkjson/2.5-2"
+   },
+   graphql = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.execute"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.introspection"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.parse"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.rules"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.schema"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.types"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.util"] = {
+      "graphql/0.0.2-1"
+   },
+   ["graphql.validate"] = {
+      "graphql/0.0.2-1"
+   },
+   jsonschema = {
+      "jsonschema/0.9.3-0"
+   },
+   ["jsonschema.store"] = {
+      "jsonschema/0.9.3-0"
+   },
+   lfs = {
+      "luafilesystem/1.7.0-2"
+   },
+   librestychash = {
+      "lua-resty-balancer/0.02rc5-0"
+   },
+   librestyradixtree = {
+      "lua-resty-radixtree/2.5-0"
+   },
+   lpeg = {
+      "lpeg/1.0.2-1"
+   },
+   ["net.url"] = {
+      "net-url/0.9-1"
+   },
+   opentracing = {
+      "opentracing-openresty/0.1-0"
+   },
+   ["opentracing.span"] = {
+      "opentracing-openresty/0.1-0"
+   },
+   ["opentracing.span_context"] = {
+      "opentracing-openresty/0.1-0"
+   },
+   ["opentracing.tracer"] = {
+      "opentracing-openresty/0.1-0"
+   },
+   pb = {
+      "lua-protobuf/0.3.1-0"
+   },
+   prometheus = {
+      "lua-resty-prometheus/1.1-0"
+   },
+   prometheus_keys = {
+      "lua-resty-prometheus/1.1-0"
+   },
+   prometheus_resty_counter = {
+      "lua-resty-prometheus/1.1-0"
+   },
+   protoc = {
+      "lua-protobuf/0.3.1-0"
+   },
+   re = {
+      "lpeg/1.0.2-1"
+   },
+   ["resty.chash"] = {
+      "lua-resty-balancer/0.02rc5-0"
+   },
+   ["resty.cookie"] = {
+      "lua-resty-cookie/0.1.0-1"
+   },
+   ["resty.etcd"] = {
+      "lua-resty-etcd/1.4.3-0"
+   },
+   ["resty.etcd.serializers.json"] = {
+      "lua-resty-etcd/1.4.3-0"
+   },
+   ["resty.etcd.serializers.raw"] = {
+      "lua-resty-etcd/1.4.3-0"
+   },
+   ["resty.etcd.utils"] = {
+      "lua-resty-etcd/1.4.3-0"
+   },
+   ["resty.etcd.v2"] = {
+      "lua-resty-etcd/1.4.3-0"
+   },
+   ["resty.etcd.v3"] = {
+      "lua-resty-etcd/1.4.3-0"
+   },
+   ["resty.evp"] = {
+      "lua-resty-jwt/0.2.0-0"
+   },
+   ["resty.expr.v1"] = {
+      "lua-resty-expr/1.0.0-0"
+   },
+   ["resty.healthcheck"] = {
+      "lua-resty-healthcheck-api7/2.2.0-0"
+   },
+   ["resty.healthcheck.utils"] = {
+      "lua-resty-healthcheck-api7/2.2.0-0"
+   },
+   ["resty.hmac"] = {
+      "lua-resty-hmac-ffi/0.05-0", "lua-resty-jwt/0.2.0-0"
+   },
+   ["resty.http"] = {
+      "lua-resty-http/0.15-0"
+   },
+   ["resty.http_headers"] = {
+      "lua-resty-http/0.15-0"
+   },
+   ["resty.ipmatcher"] = {
+      "lua-resty-ipmatcher/0.6-0"
+   },
+   ["resty.jit-uuid"] = {
+      "lua-resty-jit-uuid/0.0.7-2"
+   },
+   ["resty.jwt"] = {
+      "lua-resty-jwt/0.2.0-0"
+   },
+   ["resty.jwt-validators"] = {
+      "lua-resty-jwt/0.2.0-0"
+   },
+   ["resty.kafka.broker"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.client"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.errors"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.producer"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.request"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.response"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.ringbuffer"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.kafka.sendbuffer"] = {
+      "lua-resty-kafka/0.07-0"
+   },
+   ["resty.logger.socket"] = {
+      "lua-resty-logger-socket/2.0-0"
+   },
+   ["resty.ngxvar"] = {
+      "lua-resty-ngxvar/0.5.2-0"
+   },
+   ["resty.ngxvar.http"] = {
+      "lua-resty-ngxvar/0.5.2-0"
+   },
+   ["resty.ngxvar.stream"] = {
+      "lua-resty-ngxvar/0.5.2-0"
+   },
+   ["resty.openidc"] = {
+      "lua-resty-openidc/1.7.2-1"
+   },
+   ["resty.radixtree"] = {
+      "lua-resty-radixtree/2.5-0"
+   },
+   ["resty.rediscluster"] = {
+      "resty-redis-cluster/1.02-4"
+   },
+   ["resty.roundrobin"] = {
+      "lua-resty-balancer/0.02rc5-0"
+   },
+   ["resty.session"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.ciphers.aes"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.ciphers.none"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.encoders.base16"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.encoders.base64"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.encoders.hex"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.hmac.sha1"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.identifiers.random"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.serializers.json"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.storage.cookie"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.storage.memcache"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.storage.memcached"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.storage.redis"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.storage.shm"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.strategies.default"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.session.strategies.regenerate"] = {
+      "lua-resty-session/2.24-1"
+   },
+   ["resty.template"] = {
+      "lua-resty-template/1.9-1"
+   },
+   ["resty.template.html"] = {
+      "lua-resty-template/1.9-1"
+   },
+   ["resty.template.microbenchmark"] = {
+      "lua-resty-template/1.9-1"
+   },
+   ["resty.worker.events"] = {
+      "lua-resty-worker-events/1.0.0-1"
+   },
+   ["resty.xmodem"] = {
+      "resty-redis-cluster/1.02-4"
+   },
+   ["skywalking.client"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.correlation_context"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.management"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.segment"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.segment_ref"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.span"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.span_layer"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.tracer"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.tracing_context"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   ["skywalking.util"] = {
+      "skywalking-nginx-lua/0.3-0"
+   },
+   tinyyaml = {
+      "lua-tinyyaml/1.0-0"
+   },
+   typeof = {
+      "lua-typeof/0.1-0"
+   }
+}
+repository = {
+   base64 = {
+      ["1.5-2"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               base64 = "base64.lua"
+            }
+         }
+      }
+   },
+   dkjson = {
+      ["2.5-2"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               dkjson = "dkjson.lua"
+            }
+         }
+      }
+   },
+   graphql = {
+      ["0.0.2-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               lpeg = "1.0.2-1"
+            },
+            modules = {
+               graphql = "graphql/init.lua",
+               ["graphql.execute"] = "graphql/execute.lua",
+               ["graphql.introspection"] = "graphql/introspection.lua",
+               ["graphql.parse"] = "graphql/parse.lua",
+               ["graphql.rules"] = "graphql/rules.lua",
+               ["graphql.schema"] = "graphql/schema.lua",
+               ["graphql.types"] = "graphql/types.lua",
+               ["graphql.util"] = "graphql/util.lua",
+               ["graphql.validate"] = "graphql/validate.lua"
+            }
+         }
+      }
+   },
+   jsonschema = {
+      ["0.9.3-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               ["net-url"] = "0.9-1"
+            },
+            modules = {
+               jsonschema = "jsonschema.lua",
+               ["jsonschema.store"] = "jsonschema/store.lua"
+            }
+         }
+      }
+   },
+   lpeg = {
+      ["1.0.2-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               lpeg = "lpeg.so",
+               re = "re.lua"
+            }
+         }
+      }
+   },
+   ["lua-protobuf"] = {
+      ["0.3.1-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               pb = "pb.so",
+               protoc = "protoc.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-balancer"] = {
+      ["0.02rc5-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               librestychash = "librestychash.so",
+               ["resty.chash"] = "resty/chash.lua",
+               ["resty.roundrobin"] = "resty/roundrobin.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-cookie"] = {
+      ["0.1.0-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.cookie"] = "resty/cookie.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-etcd"] = {
+      ["1.4.3-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               ["lua-resty-http"] = "0.15-0",
+               ["lua-typeof"] = "0.1-0"
+            },
+            modules = {
+               ["resty.etcd"] = "resty/etcd.lua",
+               ["resty.etcd.serializers.json"] = "resty/etcd/serializers/json.lua",
+               ["resty.etcd.serializers.raw"] = "resty/etcd/serializers/raw.lua",
+               ["resty.etcd.utils"] = "resty/etcd/utils.lua",
+               ["resty.etcd.v2"] = "resty/etcd/v2.lua",
+               ["resty.etcd.v3"] = "resty/etcd/v3.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-expr"] = {
+      ["1.0.0-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.expr.v1"] = "resty/expr/v1.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-healthcheck-api7"] = {
+      ["2.2.0-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               ["lua-resty-worker-events"] = "1.0.0-1"
+            },
+            modules = {
+               ["resty.healthcheck"] = "resty/healthcheck.lua",
+               ["resty.healthcheck.utils"] = "resty/healthcheck/utils.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-hmac-ffi"] = {
+      ["0.05-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.hmac"] = "resty/hmac.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-http"] = {
+      ["0.15-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.http"] = "resty/http.lua",
+               ["resty.http_headers"] = "resty/http_headers.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-ipmatcher"] = {
+      ["0.6-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.ipmatcher"] = "resty/ipmatcher.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-jit-uuid"] = {
+      ["0.0.7-2"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.jit-uuid"] = "resty/jit-uuid.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-jwt"] = {
+      ["0.2.0-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.evp"] = "resty/evp.lua",
+               ["resty.hmac"] = "resty/hmac.lua",
+               ["resty.jwt"] = "resty/jwt.lua",
+               ["resty.jwt-validators"] = "resty/jwt-validators.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-kafka"] = {
+      ["0.07-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.kafka.broker"] = "resty/kafka/broker.lua",
+               ["resty.kafka.client"] = "resty/kafka/client.lua",
+               ["resty.kafka.errors"] = "resty/kafka/errors.lua",
+               ["resty.kafka.producer"] = "resty/kafka/producer.lua",
+               ["resty.kafka.request"] = "resty/kafka/request.lua",
+               ["resty.kafka.response"] = "resty/kafka/response.lua",
+               ["resty.kafka.ringbuffer"] = "resty/kafka/ringbuffer.lua",
+               ["resty.kafka.sendbuffer"] = "resty/kafka/sendbuffer.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-logger-socket"] = {
+      ["2.0-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.logger.socket"] = "resty/logger/socket.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-ngxvar"] = {
+      ["0.5.2-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.ngxvar"] = "resty/ngxvar.lua",
+               ["resty.ngxvar.http"] = "resty/ngxvar/http.lua",
+               ["resty.ngxvar.stream"] = "resty/ngxvar/stream.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-openidc"] = {
+      ["1.7.2-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               ["lua-resty-http"] = "0.15-0",
+               ["lua-resty-jwt"] = "0.2.0-0",
+               ["lua-resty-session"] = "2.24-1"
+            },
+            modules = {
+               ["resty.openidc"] = "resty/openidc.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-prometheus"] = {
+      ["1.1-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               prometheus = "prometheus.lua",
+               prometheus_keys = "prometheus_keys.lua",
+               prometheus_resty_counter = "prometheus_resty_counter.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-radixtree"] = {
+      ["2.5-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               ["lua-resty-expr"] = "1.0.0-0",
+               ["lua-resty-ipmatcher"] = "0.6-0"
+            },
+            modules = {
+               librestyradixtree = "librestyradixtree.so",
+               ["resty.radixtree"] = "resty/radixtree.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-session"] = {
+      ["2.24-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.session"] = "resty/session.lua",
+               ["resty.session.ciphers.aes"] = "resty/session/ciphers/aes.lua",
+               ["resty.session.ciphers.none"] = "resty/session/ciphers/none.lua",
+               ["resty.session.encoders.base16"] = "resty/session/encoders/base16.lua",
+               ["resty.session.encoders.base64"] = "resty/session/encoders/base64.lua",
+               ["resty.session.encoders.hex"] = "resty/session/encoders/hex.lua",
+               ["resty.session.hmac.sha1"] = "resty/session/hmac/sha1.lua",
+               ["resty.session.identifiers.random"] = "resty/session/identifiers/random.lua",
+               ["resty.session.serializers.json"] = "resty/session/serializers/json.lua",
+               ["resty.session.storage.cookie"] = "resty/session/storage/cookie.lua",
+               ["resty.session.storage.memcache"] = "resty/session/storage/memcache.lua",
+               ["resty.session.storage.memcached"] = "resty/session/storage/memcached.lua",
+               ["resty.session.storage.redis"] = "resty/session/storage/redis.lua",
+               ["resty.session.storage.shm"] = "resty/session/storage/shm.lua",
+               ["resty.session.strategies.default"] = "resty/session/strategies/default.lua",
+               ["resty.session.strategies.regenerate"] = "resty/session/strategies/regenerate.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-template"] = {
+      ["1.9-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.template"] = "resty/template.lua",
+               ["resty.template.html"] = "resty/template/html.lua",
+               ["resty.template.microbenchmark"] = "resty/template/microbenchmark.lua"
+            }
+         }
+      }
+   },
+   ["lua-resty-worker-events"] = {
+      ["1.0.0-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.worker.events"] = "resty/worker/events.lua"
+            }
+         }
+      }
+   },
+   ["lua-tinyyaml"] = {
+      ["1.0-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               tinyyaml = "tinyyaml.lua"
+            }
+         }
+      }
+   },
+   ["lua-typeof"] = {
+      ["0.1-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               typeof = "typeof.lua"
+            }
+         }
+      }
+   },
+   luafilesystem = {
+      ["1.7.0-2"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               lfs = "lfs.so"
+            }
+         }
+      }
+   },
+   ["net-url"] = {
+      ["0.9-1"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["net.url"] = "net/url.lua"
+            }
+         }
+      }
+   },
+   ["opentracing-openresty"] = {
+      ["0.1-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               opentracing = "opentracing/init.lua",
+               ["opentracing.span"] = "opentracing/span.lua",
+               ["opentracing.span_context"] = "opentracing/span_context.lua",
+               ["opentracing.tracer"] = "opentracing/tracer.lua"
+            }
+         }
+      }
+   },
+   ["resty-redis-cluster"] = {
+      ["1.02-4"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {},
+            modules = {
+               ["resty.rediscluster"] = "resty/rediscluster.lua",
+               ["resty.xmodem"] = "resty/xmodem.lua"
+            }
+         }
+      }
+   },
+   ["skywalking-nginx-lua"] = {
+      ["0.3-0"] = {
+         {
+            arch = "installed",
+            commands = {},
+            dependencies = {
+               ["lua-resty-http"] = "0.15-0",
+               ["lua-resty-jit-uuid"] = "0.0.7-2"
+            },
+            modules = {
+               ["skywalking.client"] = "skywalking/client.lua",
+               ["skywalking.correlation_context"] = "skywalking/correlation_context.lua",
+               ["skywalking.management"] = "skywalking/management.lua",
+               ["skywalking.segment"] = "skywalking/segment.lua",
+               ["skywalking.segment_ref"] = "skywalking/segment_ref.lua",
+               ["skywalking.span"] = "skywalking/span.lua",
+               ["skywalking.span_layer"] = "skywalking/span_layer.lua",
+               ["skywalking.tracer"] = "skywalking/tracer.lua",
+               ["skywalking.tracing_context"] = "skywalking/tracing_context.lua",
+               ["skywalking.util"] = "skywalking/util.lua"
+            }
+         }
+      }
+   }
+}

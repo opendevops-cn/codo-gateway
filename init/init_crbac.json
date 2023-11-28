@@ -1,0 +1,22 @@
+[
+  {
+    "time": 1606808297987,
+    "name": "权限测试",
+    "key": "/5/post/",
+    "status": 1,
+    "rules": [
+      "/api/job/v1/flow/current/list/",
+      "/api/job/v1/flow/history/list/"
+    ]
+  },
+    {
+    "time": 1606808297957,
+    "name": "权限测试",
+    "key": "/api/job/v1/flow/current/list/",
+    "status": 1,
+    "rules": {
+      "5get":"yes",
+      "5post":"no"
+    }
+  }
+]

@@ -1,0 +1,60 @@
+{
+  "appName": "codo-gateway",
+  "env": "prod",
+  "etcd": {
+    "http_host": "http://127.0.0.1:2379",
+    "data_prefix": "/codo/gw/"
+  },
+  "jwt_auth": {
+    "key": "auth_key",
+    "token_secret": "yxLxQ0jGtmAhRT4RMMxRrXf"
+  },
+  "codo_rbac": {
+    "key": "auth_key",
+    "token_secret": "yxLxQ0jGtmAhRT4RMMxRrXf"
+  },
+  "plugins": [
+    "default_plugin",
+    "discovery_plugin",
+    "tracing_plugin",
+    "rewrite_plugin",
+    "jwt_plugin",
+    "codo_rbac_plugin",
+    "kafka-logger",
+    "redis-logger",
+    "limit-req",
+    "referer-restriction",
+    "ip-restriction",
+    "cors_plugin"
+  ],
+  "plugins_config": {
+    "redis-logger": {
+      "host": "127.0.0.1",
+      "port": 6379,
+      "auth_pwd": "PuiJUnyKCSLhhRT4RMMxR",
+      "db": 11,
+      "alive_time": 604800,
+      "channel": "gw",
+      "full_log": "no"
+    }
+  },
+  "admin": {
+    "jwt_secret": "yxLxQ0jGtmAhRT4RMMxRrXf",
+    "account": {
+      "admin": {
+        "password": "tainiubile",
+        "info": {
+          "roles": ["admin"],
+          "introduction": "I am a super administrator",
+          "avatar": "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+          "name": "管理员"
+        }
+      }
+    }
+  },
+  "tokens": {
+    "e09d6153f1c15395144794GtmAhRT4": {
+      "desc": "系统默认 api token"
+    }
+  }
+}

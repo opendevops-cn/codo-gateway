@@ -14,6 +14,7 @@ local config = require("app.config")
 local codo_rbac_dict = config.get_codo_rbac()
 local rbac_secret = codo_rbac_dict.token_secret
 local rbac_key = codo_rbac_dict.key
+local log = require("app.core.log")
 
 local _M = {
     name = "CRBAC",
@@ -28,12 +29,9 @@ local function decode_auth_token_verify(auth_token)
     return load_token
 end
 
-
 function _M.do_in_init_worker()
     rbac_store.init()
 end
-
-
 
 function _M.do_in_access()
     local cookie, err = ck:new()
@@ -96,6 +94,8 @@ function _M.do_in_access()
     end
 
     local uri = ngx.var.origin_uri
+    uri = string.gsub(uri, "%?.*", "")
+    log.debug("rbac uri =====", uri)
     local state = rbac_verify.match(app_code, uri, user_id, method)
     if state == true then
         return

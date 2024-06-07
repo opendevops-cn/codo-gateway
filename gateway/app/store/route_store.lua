@@ -99,7 +99,7 @@ local function refresh_router()
 end
 
 local function watch_routes(ctx)
-    log.info("watch routes start_revision: ", ctx.start_revision)
+    log.debug("watch routes start_revision: ", ctx.start_revision)
     local opts = {
         timeout = etcd_watch_opts.timeout,
         prev_kv = etcd_watch_opts.prev_kv,
@@ -120,7 +120,7 @@ local function watch_routes(ctx)
             end
             break
         end
-        log.info("routes watch result: ", json.delay_encode(chunk.result))
+        log.debug("routes watch result: ", json.delay_encode(chunk.result))
         ctx.start_revision = chunk.result.header.revision + 1
         if chunk.result.events then
             for _, event in ipairs(chunk.result.events) do

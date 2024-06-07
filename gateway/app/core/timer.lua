@@ -75,14 +75,14 @@ local function callback_fun(self)
         if lock then
             local elapsed, err = lock:lock(name)
             if not elapsed then
-                log.info("timer[", name, "] failed to acquire the lock: ", err)
+                log.debug("timer[", name, "] failed to acquire the lock: ", err)
                 if self.fail_sleep_time > 0 then
                     sleep(self.fail_sleep_time)
                 end
                 return
             end
         end
-        log.info("timer[", name, "] start")
+        log.debug("timer[", name, "] start")
         local start_time = time.now()
         local ok, err = pcall(callback, self.ctx)
         if not ok then
@@ -94,7 +94,7 @@ local function callback_fun(self)
         end
 
         local ms = time.now() - start_time
-        log.info("timer[", name, "] run finish, take ", string.format("%.2f", ms), "s")
+        log.debug("timer[", name, "] run finish, take ", string.format("%.2f", ms), "s")
     end
 end
 

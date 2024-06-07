@@ -26,9 +26,11 @@ local upstream_type_cache = ngx.shared.upstream_type_cache
 local _M = {}
 
 local balancer_cache
+local upstream_node_cache
 
 do
-    balancer_cache = lrucache.new({count = 1024})
+    balancer_cache = lrucache.new({ count = 1024 })
+    upstream_node_cache = lrucache.new({ count = 1024 })
 end -- end do
 
 function _M.set_upstream_type(service_name, type)
@@ -53,7 +55,7 @@ local balancer_types = {
 -- 刷新服务节点缓存
 local function refresh(service_name, nodes)
     local type = get_upstream_type(service_name)
-    log.info("refresh balancer: ", json.delay_encode({service_name, type, nodes}))
+    log.debug("refresh balancer: ", json.delay_encode({ service_name, type, nodes }))
     local balancer_up = balancer_types[type](nodes)
     return balancer_cache:set(service_name, balancer_up)
 end
@@ -62,14 +64,16 @@ _M.refresh = refresh
 
 -- 通过服务名获取 balancer 缓存
 local function get(service_name)
-    log.error("get service balancer: ", json.delay_encode(balancer_cache:get(service_name)))
+    log.debug("get service balancer: ", json.delay_encode(balancer_cache:get(service_name)))
     return balancer_cache:get(service_name)
 end
 
 -- 更新服务节点
-function _M.set(service_name, upstream, weight)
-    weight = weight or 1
+function _M.set(service_name, upstream, node)
+    local weight = node.weight or 1
     local balancer_up = get(service_name)
+    log.debug("set service balancer: ", service_name, ", ", upstream, ", ", weight)
+    upstream_node_cache:set(upstream, node)
     if not balancer_up then
         local nodes = {
             [upstream] = weight
@@ -77,7 +81,6 @@ function _M.set(service_name, upstream, weight)
         refresh(service_name, nodes)
         return
     end
-    log.error("set service balancer: ", service_name, ", ", upstream, ", ", weight)
     balancer_up:set(upstream, weight or 1)
 end
 
@@ -88,18 +91,25 @@ function _M.find(service_name)
         log.error("can not found service balancer: ", service_name)
         return nil
     end
-    return balancer_up:find()
+    local upstream = balancer_up:find()
+    if not upstream then
+        log.error("can not found any service node: ", service_name)
+        return nil
+    end
+    local node = upstream_node_cache:get(upstream)
+    return node
 end
 
 -- 删除服务节点
 function _M.delete(service_name, upstream)
     local balancer_up = get(service_name)
     if balancer_up then
-        log.error("remove service balancer: ", service_name, " - ", upstream," - ", tab_nkeys(balancer_up.nodes))
-        if tab_nkeys(balancer_up.nodes) == 1 then
-             balancer_cache:delete(service_name)
+        log.error("remove service balancer: ", service_name, " - ", upstream, " - ", tab_nkeys(balancer_up.nodes))
+        balancer_up:delete(upstream)
+        upstream_node_cache:delete(upstream)
+        if tab_nkeys(balancer_up.nodes) == 0 then
+            balancer_cache:delete(service_name)
         else
-            balancer_up:delete(upstream)
         end
     end
 end

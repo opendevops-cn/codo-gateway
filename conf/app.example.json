@@ -1,17 +1,27 @@
 {
   "appName": "codo-gateway",
-  "env": "prod",
+  "env": "test",
   "etcd": {
     "http_host": "http://127.0.0.1:2379",
-    "data_prefix": "/codo/gw/"
+    "data_prefix": "/my/gw/"
   },
   "jwt_auth": {
     "key": "auth_key",
-    "token_secret": "yxLxQ0jGtmAhRT4RMMxRrXf"
+    "token_secret": "xxxxxx"
   },
   "codo_rbac": {
     "key": "auth_key",
-    "token_secret": "yxLxQ0jGtmAhRT4RMMxRrXf"
+    "token_secret": "xxxxxx"
+  },
+  "sso2internal": {
+    "sso_token_secret":  "xxxxxx",
+    "sso_jwt_key": "sso_token",
+    "internal_token_secret":  "xxxxxx",
+    "internal_jwt_key": "auth_key"
+  },
+  "mfa": {
+    "mfa_secret":  "xxxxxx",
+    "mfa_key": "mfa_key"
   },
   "plugins": [
     "default_plugin",
@@ -25,35 +35,38 @@
     "limit-req",
     "referer-restriction",
     "ip-restriction",
-    "cors_plugin"
+    "cors_plugin",
+    "sso2internal"
   ],
   "plugins_config": {
     "redis-logger": {
       "host": "127.0.0.1",
       "port": 6379,
-      "auth_pwd": "PuiJUnyKCSLhhRT4RMMxR",
-      "db": 11,
+      "auth_pwd": "1234567",
+      "db": 1,
       "alive_time": 604800,
       "channel": "gw",
       "full_log": "no"
     }
   },
   "admin": {
-    "jwt_secret": "yxLxQ0jGtmAhRT4RMMxRrXf",
+    "jwt_secret": "xxxxxx",
     "account": {
       "admin": {
         "password": "tainiubile",
         "info": {
-          "roles": ["admin"],
+          "roles": [
+            "admin"
+          ],
           "introduction": "I am a super administrator",
-          "avatar": "https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif",
+          "avatar": "https://xxx.com/1.gif",
           "name": "管理员"
         }
       }
     }
   },
   "tokens": {
-    "e09d6153f1c15395144794GtmAhRT4": {
+    "xxx": {
       "desc": "系统默认 api token"
     }
   }

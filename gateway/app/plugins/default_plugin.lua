@@ -24,7 +24,8 @@ local _M = {
     name = "default",
     desc = "默认插件",
     optional = false,
-    version = "v1.0"
+    version = "v1.0",
+    priority = 10000
 }
 
 function _M.do_in_init()

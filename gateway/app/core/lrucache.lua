@@ -94,7 +94,7 @@ function _M.fetch_cache(self, key, invalid_stale, create_val_fun, ...)
     elapsed, err = lock:lock(key_s)
 
     if not elapsed then
-        log.info("failed to acquire the lock: ", err)
+        log.debug("failed to acquire the lock: ", err)
         -- 没有获得锁，则从过期缓存返回数据
         if not invalid_stale and stale_obj then
             return get_val(stale_obj)
@@ -122,7 +122,7 @@ function _M.capacity(self)
 end
 
 function _M.get_keys(self, max_count)
-    log.info("get keys: ", type(self.lru.get_keys))
+    log.debug("get keys: ", type(self.lru.get_keys))
     return self.lru:get_keys(max_count)
 end
 

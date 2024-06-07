@@ -59,6 +59,8 @@ local function parse_node(service)
         key = create_key(service.service_name, service.upstream),
         service_name = service.service_name,
         upstream = service.upstream,
+        dst_domain = service.dst_domain,
+        dst_is_https = service.dst_is_https,
         weight = service.weight,
         status = service.status,
         time = service.time or time.now() * 1000
@@ -78,7 +80,7 @@ local function find_by_prefix(prefix)
     prefix = prefix and service_node_etcd_key(prefix) or etcd_prefix
     local resp, err = etcd.readdir(prefix)
     if err then
-        log.info("failed to query service list, key: ", prefix, ", err: ", err)
+        log.debug("failed to query service list, key: ", prefix, ", err: ", err)
         return nil, err
     end
 
@@ -104,47 +106,22 @@ end
 
 _M.query_service_node_list = query_service_node_list
 
--- 从 etcd 读取所有服务节点 {service_name = node_list}
-local function query_services_nodes()
-    local list = query_service_node_list()
-    if not list and tab_nkeys(list) < 1 then
-        return nil
-    end
-
-    local nodes = {}
-    for _, node in ipairs(list) do
-        if node.status ~= 1 then
-            goto CONTINUE
-        end
-
-        local items = nodes[node.service_name] or {}
-        items[node.upstream] = node.weight
-        nodes[node.service_name] = items
-
-        ::CONTINUE::
-    end
-    return nodes
-end
-
-_M.query_services_nodes = query_services_nodes
-
 -- 更新服务节点信息
 local function apply_balancer(node)
     local service_name = node.service_name
     local service_upstream = node.upstream
-    local weight = node.weight
 
     -- 下线状态，删除缓存服务节点
     if node.status == 0 then
         balancer.delete(service_name, service_upstream)
         return
     end
-    balancer.set(service_name, service_upstream, weight)
+    balancer.set(service_name, service_upstream, node)
 end
 
 -- 从 etcd 删除服务节点
 local function delete_etcd_node(key)
-    local xxx =service_node_etcd_key(key)
+    local xxx = service_node_etcd_key(key)
     local _, err = etcd.delete(service_node_etcd_key(key))
     if not err then
         return false, err
@@ -179,7 +156,7 @@ _M.set_service_node = set_service_node
 
 -- 监听服务节点数据变更
 local function watch_services(ctx)
-    log.info("watch services start_revision: ", ctx.start_revision)
+    log.debug("watch services start_revision: ", ctx.start_revision)
     local opts = {
         timeout = etcd_watch_opts.timeout,
         prev_kv = etcd_watch_opts.prev_kv,
@@ -200,7 +177,7 @@ local function watch_services(ctx)
             end
             break
         end
-        log.info("services watch result: ", json.delay_encode(chunk.result))
+        log.debug("services watch result: ", json.delay_encode(chunk.result))
         ctx.start_revision = chunk.result.header.revision + 1
         if chunk.result.events then
             for _, event in ipairs(chunk.result.events) do
@@ -218,13 +195,13 @@ end
 
 -- 加载服务节点注册信息
 local function load_services()
-    local nodes = query_services_nodes()
+    local nodes = query_service_node_list()
     if nodes and tab_nkeys(nodes) > 0 then
-        for name, items in pairs(nodes) do
-            balancer.refresh(name, items)
+        for _, node in pairs(nodes) do
+            apply_balancer(node)
         end
     else
-        log.info("service nodes empty")
+        log.debug("service nodes empty")
     end
 end
 
@@ -236,9 +213,9 @@ local function _init()
 end
 
 function _M.init()
-    discovery_timer = timer.new("discovery.timer", _init, {delay = 0})
-    discovery_refresh_timer = timer.new("discovery.refresh.timer", load_services, {delay = 3})
-    discovery_watcher_timer = timer.new("discovery.watcher.timer", watch_services, {delay = 0})
+    discovery_timer = timer.new("discovery.timer", _init, { delay = 0 })
+    discovery_refresh_timer = timer.new("discovery.refresh.timer", load_services, { delay = 3 })
+    discovery_watcher_timer = timer.new("discovery.watcher.timer", watch_services, { delay = 0 })
     local ok, err = discovery_timer:once()
     if not ok then
         error("failed to init discovery: " .. err)

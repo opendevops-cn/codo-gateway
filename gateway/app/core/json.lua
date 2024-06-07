@@ -89,7 +89,7 @@ local delay_tab =
 )
 
 -- this is a non-thread safe implementation
--- it works well with log, eg: log.info(..., json.delay_encode({...}))
+-- it works well with log, eg: log.debug(..., json.delay_encode({...}))
 function _M.delay_encode(data, force)
     delay_tab.data = data
     delay_tab.force = force
@@ -97,10 +97,10 @@ function _M.delay_encode(data, force)
 end
 
 function _M.decode_json_file(path)
-    log.info("decode json path: ", path)
+    log.debug("decode json path: ", path)
     local jsonFile = io.open(path, "r")
     local jsonStr = jsonFile:read("*a")
-    log.info("decode json data: ", jsonStr)
+    log.debug("decode json data: ", jsonStr)
     jsonFile:close()
     return json_decode(jsonStr)
 end

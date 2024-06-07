@@ -179,7 +179,7 @@ function _M.get_body(max_size, ctx)
         return nil
     end
 
-    log.info("attempt to read body from file: ", file_name)
+    log.debug("attempt to read body from file: ", file_name)
 
     if max_size then
         local size, err = lfs.attributes (file_name, "size")

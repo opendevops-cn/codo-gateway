@@ -11,10 +11,10 @@ local ngx = ngx
 local redis = require "resty.redis"
 redis.add_commands("xadd")
 
-local core  = require("app.core")
+local core = require("app.core")
 local user_info = ngx.shared.user_info
 local batch_processor = require("app.utils.batch-processor")
-local log_util        = require("app.utils.log-util")
+local log_util = require("app.utils.log-util")
 
 -- plugin config
 local plugin_name = "redis-logger"
@@ -26,15 +26,13 @@ local stale_timer_running = false
 local timer_at = ngx.timer.at
 local buffers = {}
 
-
-
 local _M = {
     name = plugin_name,
     desc = "Redis日志",
     optional = true,
+    priority = 500,
     version = "v0.1"
 }
-
 
 local function connect(conf)
 
@@ -79,7 +77,7 @@ local function remove_stale_objects(premature)
     for key, batch in ipairs(buffers) do
         if #batch.entry_buffer.entries == 0 and #batch.batch_to_process == 0 then
             core.log.warn("removing batch processor stale object, conf: ",
-                          core.json.delay_encode(key))
+                core.json.delay_encode(key))
             buffers[key] = nil
         end
     end
@@ -99,7 +97,7 @@ local buffers_config = {
 }
 
 local function default_plugin_conf(conf)
-    local _conf =  {
+    local _conf = {
         host = conf.host or '127.0.0.1',
         port = conf.port or 6379,
         auth_pwd = conf.auth_pwd or '123456',
@@ -119,7 +117,7 @@ redis_config = default_plugin_conf(read_config)
 
 function _M.do_in_log(route)
     -- local entry = log_util.get_full_log(ngx, {include_req_body=true})
-    if  redis_config.full_log  == 'no' and  ngx.req.get_method() == "GET" then
+    if redis_config.full_log == 'no' and ngx.req.get_method() == "GET" then
         return
     end
 
@@ -163,7 +161,7 @@ function _M.do_in_log(route)
             end
 
             -- red:xadd
-            for i,k in ipairs(entries[1]) do
+            for i, k in ipairs(entries[1]) do
                 core.log.error(i, k)
             end
             local ok, _err = red:xadd(

@@ -109,7 +109,7 @@ local function new_lru_fun(opts)
         end
 
         local key_s = tostring(key)
-        log.info("try to lock with key ", key_s)
+        log.debug("try to lock with key ", key_s)
 
         local elapsed, err = lock:lock(key_s)
         if not elapsed then
@@ -120,7 +120,7 @@ local function new_lru_fun(opts)
                         nil, key, version)
         if cache_obj then
             lock:unlock()
-            log.info("unlock with key ", key_s)
+            log.debug("unlock with key ", key_s)
             return cache_obj.val
         end
 
@@ -129,7 +129,7 @@ local function new_lru_fun(opts)
             lru_obj:set(key, {val = obj, ver = version}, item_ttl)
         end
         lock:unlock()
-        log.info("unlock with key ", key_s)
+        log.debug("unlock with key ", key_s)
 
         return obj, err
     end

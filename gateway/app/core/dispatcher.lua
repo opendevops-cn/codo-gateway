@@ -24,37 +24,37 @@ local _M = {}
 local mt = { __index = _M }
 
 function _M.do_in_rewrite(self)
-    call_utils.call(self.plugins, "do_in_rewrite", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_rewrite", self.route)
 end
 
 function _M.do_in_access(self)
-    call_utils.call(self.plugins, "do_in_access", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_access", self.route)
 end
 
 function _M.do_in_content(self)
-    call_utils.call(self.plugins, "do_in_content", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_content", self.route)
 end
 
 function _M.do_in_balancer(self)
-    call_utils.call(self.plugins, "do_in_balancer", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_balancer", self.route)
 end
 
 function _M.do_in_header_filter(self)
-    call_utils.call(self.plugins, "do_in_header_filter", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_header_filter", self.route)
 end
 
 function _M.do_in_body_filter(self)
-    call_utils.call(self.plugins, "do_in_body_filter", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_body_filter", self.route)
 end
 
 function _M.do_in_log(self)
-    call_utils.call(self.plugins, "do_in_log", self.route)
+    call_utils.call_alphabeta(self.plugins, "do_in_log", self.route)
 end
 
 function _M.new(self, plugins, route)
     self.plugins = plugins
     self.route = route
-    log.info("new dispatcher ==> ", cjson.encode(route))
+    log.debug("new dispatcher ==> ", cjson.encode(route))
     return setmetatable(self, mt)
 end
 

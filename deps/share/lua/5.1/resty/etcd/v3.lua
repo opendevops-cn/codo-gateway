@@ -31,7 +31,7 @@ local mt = { __index = _M }
 local refresh_jwt_token
 
 local function _request_uri(self, method, uri, opts, timeout, ignore_auth)
-    utils.log_info("v3 request uri: ", uri, ", timeout: ", timeout)
+    utils.log_debug("v3 request uri: ", uri, ", timeout: ", timeout)
 
     local body
     if opts and opts.body and tab_nkeys(opts.body) > 0 then
@@ -230,12 +230,12 @@ function refresh_jwt_token(self, timeout)
         end
 
         if self.last_refresh_jwt_err then
-            utils.log_info("v3 refresh jwt last err: ", self.last_refresh_jwt_err)
+            utils.log_debug("v3 refresh jwt last err: ", self.last_refresh_jwt_err)
             return nil, self.last_refresh_jwt_err
         end
 
         -- something unexpected happened, try again
-        utils.log_info("v3 try auth after waiting, timeout: ", timeout)
+        utils.log_debug("v3 try auth after waiting, timeout: ", timeout)
     end
 
     self.last_refresh_jwt_err = nil
@@ -331,7 +331,7 @@ local function set(self, key, val, attr)
     -- get
     if res.status < 300  then
         -- TODO(optimize): delay json encode
-        utils.log_info("v3 set body: ", encode_json(res.body))
+        utils.log_debug("v3 set body: ", encode_json(res.body))
     end
 
     return res
@@ -560,7 +560,7 @@ local function request_chunk(self, method, scheme, host, port, path, opts, timeo
         query   = query,
         headers = headers,
     })
-    utils.log_info("http request method: ", method, " path: ", path,
+    utils.log_debug("http request method: ", method, " path: ", path,
              " body: ", body, " query: ", query)
 
     if not res then

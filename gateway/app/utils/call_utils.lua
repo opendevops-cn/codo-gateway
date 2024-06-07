@@ -17,6 +17,7 @@
 local log = require("app.core.log")
 local pcall = pcall
 local pairs = pairs
+local ipairs = ipairs
 local _M = {}
 
 function _M.call(modules, method_name, ...)
@@ -26,6 +27,26 @@ function _M.call(modules, method_name, ...)
             log.debug("can not found module method, ", name, ".", method_name)
             goto CONTINUE
         end
+
+        local ok, err = pcall(func, ...)
+        if not ok then
+            log.error("call error:", method_name, " - ", err)
+        end
+
+        ::CONTINUE::
+    end
+end
+
+-- call_alphabeta 顺序调用模块方法
+function _M.call_alphabeta(modules, method_name, ...)
+    for _, m in ipairs(modules) do
+        local func = m[method_name]
+        local plugin_name = m.name
+        if not func then
+            log.debug("can not found module method, ", plugin_name, ".", method_name)
+            goto CONTINUE
+        end
+        log.debug("call, ", plugin_name, ".", method_name)
 
         local ok, err = pcall(func, ...)
         if not ok then

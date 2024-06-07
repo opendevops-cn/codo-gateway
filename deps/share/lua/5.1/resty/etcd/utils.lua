@@ -84,11 +84,17 @@ end
 local ngx_log = ngx.log
 local ngx_ERR = ngx.ERR
 local ngx_INFO = ngx.INFO
+local ngx_DEBUG = ngx.DEBUG
 local function log_error(...)
     return ngx_log(ngx_ERR, ...)
 end
 _M.log_error = log_error
 
+
+local function log_debug( ... )
+    return ngx_log(ngx_DEBUG, ...)
+end
+_M.log_debug = log_debug
 
 local function log_info( ... )
     return ngx_log(ngx_INFO, ...)

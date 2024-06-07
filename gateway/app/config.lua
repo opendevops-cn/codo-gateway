@@ -50,13 +50,18 @@ function _M.get_jwt_auth()
     return get("jwt_auth")
 end
 
+function _M.get_sso2internal()
+    return get("sso2internal")
+end
+
+function _M.get_mfa()
+    return get("mfa")
+end
+
 function _M.get_codo_rbac()
     return get("codo_rbac")
 end
 
-function _M.get_auth_rbac()
-    return get("auth_rbac")
-end
 
 function _M.get_plugins_config(plugin_name)
     local _plugins_config = get("plugins_config")

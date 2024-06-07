@@ -164,7 +164,17 @@ end
 
     local ngx_log = ngx.log
     local ngx_INFO = ngx.INFO
+    local ngx_DEBUG = ngx.DEBUG
     local ngx_ERR = ngx.ERR
+
+local function log_debug(...)
+    if cur_level and ngx_DEBUG > cur_level then
+        return
+    end
+
+    return ngx_log(ngx_DEBUG, ...)
+end
+
 local function log_info(...)
     if cur_level and ngx_INFO > cur_level then
         return
@@ -229,7 +239,7 @@ local function insert_route(self, opts)
     self.match_data[self.match_data_index] = {opts}
 
     radix.radix_tree_insert(self.tree, path, #path, self.match_data_index)
-    log_info("insert route path: ", path, " dataprt: ", self.match_data_index)
+    log_debug("insert route path: ", path, " dataprt: ", self.match_data_index)
     return true
 end
 
@@ -340,7 +350,7 @@ function pre_insert_route(self, path, route)
         route_opts.path = path
     end
 
-    log_info("path: ", route_opts.path, " operator: ", route_opts.path_op)
+    log_debug("path: ", route_opts.path, " operator: ", route_opts.path_op)
 
     route_opts.metadata = route.metadata
     route_opts.handler  = route.handler
@@ -472,7 +482,7 @@ local function compare_param(req_path, route, opts)
     end
 
     local pat, names = fetch_pat(route.path_org)
-    log_info("pcre pat: ", pat)
+    log_debug("pcre pat: ", pat)
     if #names == 0 then
         return true
     end
@@ -517,7 +527,7 @@ local function match_route_opts(route, opts, args)
     if matcher_ins then
         local ok, err = matcher_ins:match(opts.remote_addr)
         if err then
-            log_info("failed to match ip: ", err)
+            log_debug("failed to match ip: ", err)
             return false
         end
         if not ok then
@@ -525,7 +535,7 @@ local function match_route_opts(route, opts, args)
         end
     end
 
-    -- log_info("route.hosts: ", type(route.hosts))
+    -- log_debug("route.hosts: ", type(route.hosts))
     if route.hosts then
         local matched = false
 
@@ -548,7 +558,7 @@ local function match_route_opts(route, opts, args)
             end
         end
 
-        log_info("hosts match: ", matched)
+        log_debug("hosts match: ", matched)
         if not matched then
             return false
         end
@@ -597,8 +607,8 @@ local function _match_from_routes(routes, path, opts, args)
     local opts_matched_exists = (opts.matched ~= nil)
     for _, route in ipairs(routes) do
         if match_route_opts(route, opts, args) then
-            -- log_info("matched route: ", require("cjson").encode(route))
-            -- log_info("matched path: ", path)
+            -- log_debug("matched route: ", require("cjson").encode(route))
+            -- log_debug("matched path: ", path)
             if compare_param(path, route, opts) then
                 if opts_matched_exists then
                     opts.matched._path = route.path_org

@@ -58,8 +58,7 @@ local function query_list()
     end
 
     local crbac = {}
-
-    --ngx.log(ngx.ERR, 'rbac query list--->',etcd_prefix, json.encode( resp.body.kvs))
+    --    ngx.log(ngx.ERR, 'rbac query list--->',etcd_prefix, json.encode( resp.body.kvs))
     if resp.body.kvs and tab_nkeys(resp.body.kvs) > 0 then
         for _, kv in ipairs(resp.body.kvs) do
             core_table.insert(crbac, kv.value)
@@ -96,7 +95,7 @@ local function refresh_crbac()
 end
 
 local function watch_crbac(ctx)
-    log.info("watch crbacs start_revision: ", ctx.start_revision)
+    log.debug("watch crbacs start_revision: ", ctx.start_revision)
     local opts = {
         timeout = etcd_watch_opts.timeout,
         prev_kv = etcd_watch_opts.prev_kv,
@@ -117,11 +116,11 @@ local function watch_crbac(ctx)
             end
             break
         end
-        log.info("rabc watch result: ", json.delay_encode(chunk.result))
+        log.debug("rabc watch result: ", json.delay_encode(chunk.result))
         ctx.start_revision = chunk.result.header.revision + 1
         if chunk.result.events then
             for _, event in ipairs(chunk.result.events) do
-                --log.error("rabc event: ", event.type, " - ", json.delay_encode(event.kv))
+                log.error("rabc event: ", event.type, " - ", json.delay_encode(event.kv))
                 refresh_crbac()
             end
         end

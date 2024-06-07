@@ -33,7 +33,7 @@ end
 function _M.http_init_worker()
     local ctx = require("app.core.ctx")
     local worker_id = ngx.worker.id()
-    log.info("init worker: ", worker_id)
+    log.debug("init worker: ", worker_id)
 
     ctx.init_worker()
 end

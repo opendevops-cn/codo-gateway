@@ -32,7 +32,7 @@ do
 end -- end do
 
 local function create_rx(routes)
-    log.info("routes: ", json.delay_encode(routes))
+    log.debug("routes: ", json.delay_encode(routes))
     local mapping = {}
     for _, route in ipairs(routes) do
         core_table.insert(
@@ -43,7 +43,7 @@ local function create_rx(routes)
             }
         )
     end
-    log.info("mapping: ", json.delay_encode(mapping))
+    log.debug("mapping: ", json.delay_encode(mapping))
     return radixtree.new(mapping)
 end
 
@@ -51,7 +51,7 @@ end
 function _M.match(url)
     local rx = radix_cache:get(rx_key, false)
     local route = rx:match(url)
-    log.info("match route: ", json.delay_encode({url, route}))
+    log.debug("match route: ", json.delay_encode({url, route}))
     return route
 end
 

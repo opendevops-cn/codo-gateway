@@ -16,14 +16,17 @@
 --
 local require = require
 local log = require("app.core.log")
+local json = require("app.core.json")
 local dispatcher = require("app.core.dispatcher")
 local call_utils = require("app.utils.call_utils")
 local pcall = pcall
 local pairs = pairs
+local ipairs = ipairs
 local ngx = ngx
 local config = require("app.config")
 local tab_nkeys = require("table.nkeys")
 local router = require("app.core.router")
+local core_table = require("app.core.table")
 
 local _M = {}
 
@@ -41,18 +44,18 @@ local function install_plugins()
             if func then
                 func()
             end
-            log.info("install plugin:", plugin.name)
+            log.debug("install plugin:", plugin.name)
         end
     end
 end
 
 function _M.init()
-    log.info("ctx init")
+    log.debug("ctx init")
     install_plugins()
 end
 
 function _M.init_worker()
-    log.info("ctx init worker")
+    log.debug("ctx init worker")
     call_utils.call(plugins, "do_in_init_worker")
 end
 
@@ -62,6 +65,7 @@ function _M.get_dispatcher()
     local ctx_dispatcher = ngx_ctx.dispatcher
 
     if not ctx_dispatcher then
+        --log.info("ngx.var.uri === ", ngx.var.uri)
         local route = router.match(ngx.var.uri)
         if not route then
             route = {
@@ -76,13 +80,25 @@ function _M.get_dispatcher()
         end
 
         if not route or tab_nkeys(route.plugins) == 0 then
-            route.plugins = {"default"}
+            route.plugins = { "default" }
         end
 
+        -- 构造数组
         local dispatcher_plugins = {}
-        for _, plugin_name in pairs(route.plugins) do
-            dispatcher_plugins[plugin_name] = plugins[plugin_name]
+        for _, plugin_name in ipairs(route.plugins) do
+            local plugin = plugins[plugin_name]
+            log.debug("ngx.var.uri === ", ngx.var.uri, " dispatcher_plugins === ", plugin_name)
+            core_table.insert(dispatcher_plugins, plugin)
         end
+
+        -- 升序排序
+        core_table.sort(dispatcher_plugins, function(a, b)
+            local ap = a.priority or 9999
+            local bp = b.priority or 9999
+            return ap < bp
+        end)
+
+        -- 创建dispatcher
         ctx_dispatcher = dispatcher:new(dispatcher_plugins, route)
         ngx_ctx.dispatcher = ctx_dispatcher
     end

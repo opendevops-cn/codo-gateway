@@ -23,13 +23,14 @@ local _M = {
     name = "tracing",
     desc = "链路跟踪插件",
     optional = true,
+    priority = 90,
     version = "v1.0"
 }
 
 function _M.do_in_init()
     -- automatic seeding with os.time(), LuaSocket, or ngx.time()
     uuid.seed()
-    log.info("jit-uuid init")
+    log.debug("jit-uuid init")
 end
 
 function _M.do_in_access()

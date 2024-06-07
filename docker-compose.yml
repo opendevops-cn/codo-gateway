@@ -1,15 +1,8 @@
-version: '3.8'
+version: '3.3'
 services:
-    gateway:
-        image: tianmen2_image:latest
-        restart: unless-stopped
-        volumes:
-            - /data/gw/logs/:/usr/local/openresty/nginx/logs/
-            - /sys/fs/cgroup:/sys/fs/cgroup
-        ports:
-            - "8886:8888"
-            - "11006:11000"
-        networks:
-            - mynetwork
-networks:
-    mynetwork:
+  gateway:
+    restart: unless-stopped
+    build: .
+    ports:
+      - "8888:8888"
+      - "11000:11000"

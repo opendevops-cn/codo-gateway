@@ -16,26 +16,33 @@ function _M.do_in_rewrite(route)
 
     local rewrite_url_regex = route.props.rewrite_url_regex
     if not rewrite_url_regex then
-        log.info("rewrite props[rewrite_url_regex] not set")
+        log.debug("rewrite props[rewrite_url_regex] not set")
         return
     end
 
     local rewrite_replace = route.props.rewrite_replace
     if not rewrite_url_regex then
-        log.info("rewrite props[rewrite_replace] not set")
+        log.debug("rewrite props[rewrite_replace] not set")
         return
     end
 
-    local uri = var.uri
-
-    local target_uri, _, err = re.gsub(uri, rewrite_url_regex, rewrite_replace, "jo")
+    -- local uri = var.origin_uri
+    local uri = re.sub(var.origin_uri, "\\?.*", "")
+    local proxy_path, _, err = re.gsub(var.origin_uri, rewrite_url_regex, rewrite_replace, "jo")
     if err then
-        log.error("rewrite url error: ", err)
+        log.error("rewrite proxy_path error: ", err)
         return
     end
 
-    log.info("rewrite url ==> origin_uri: ", var.origin_uri, ", target_uri: ", target_uri)
+    local target_uri, _, err2 = re.gsub(uri, rewrite_url_regex, rewrite_replace, "jo")
+    if err2 then
+        log.error("rewrite url error: ", err2)
+        return
+    end
+
+    log.error("rewrite url ==> origin_uri: ", var.origin_uri, ", target_uri: ", target_uri, ", proxy_path: ", proxy_path)
     req.set_uri(target_uri, false)
+    ngx.var.proxy_path = proxy_path
 end
 
 return _M

@@ -19,25 +19,25 @@ local _M = {
     name = "kafka-logger",
     desc = "kafka日志",
     optional = true,
+    priority = 300,
     version = "v0.1"
 }
 
-
 function _M.do_in_log(route)
     -- 记录日志操作
---    local method = ngx.req.get_method()
---    local uri = ngx.var.uri
---    local postargs = ngx.req.get_body_data() --str
---    -- local postargs = ngx.req.get_post_args() --table
---    local data = {
---        username = user_info.username,
---        nickname = user_info.nickname,
---        login_ip = ngx.var.proxy_add_x_forwarded_for,
---        method = method,
---        uri = ngx.var.request_uri,
---        data = postargs,
---        time = os.date('%Y-%m-%d %H:%M:%S')
---    }
+    --    local method = ngx.req.get_method()
+    --    local uri = ngx.var.uri
+    --    local postargs = ngx.req.get_body_data() --str
+    --    -- local postargs = ngx.req.get_post_args() --table
+    --    local data = {
+    --        username = user_info.username,
+    --        nickname = user_info.nickname,
+    --        login_ip = ngx.var.proxy_add_x_forwarded_for,
+    --        method = method,
+    --        uri = ngx.var.request_uri,
+    --        data = postargs,
+    --        time = os.date('%Y-%m-%d %H:%M:%S')
+    --    }
 
     local var = ngx.var
     local client_ip = str_utils.split(ngx.var.proxy_add_x_forwarded_for, ',')[1]
@@ -64,15 +64,15 @@ function _M.do_in_log(route)
         start_time = ngx.req.start_time() * 1000,
         latency = (ngx.now() - ngx.req.start_time()) * 1000
     }
---    if conf.include_req_body then
---        local body = ngx.req.get_body_data()
---        if body then
---            log.request.body = body
---        end
---    end
+    --    if conf.include_req_body then
+    --        local body = ngx.req.get_body_data()
+    --        if body then
+    --            log.request.body = body
+    --        end
+    --    end
 
---    log = json.encode(log)
---    ngx.log(ngx.ERR, 'log log--->>>>>>>>>>>>>', log)
+    --    log = json.encode(log)
+    --    ngx.log(ngx.ERR, 'log log--->>>>>>>>>>>>>', log)
     --    ngx.log(ngx.ERR, 'log data--->>>>>>>>>>>>>', log)
 end
 

@@ -72,13 +72,13 @@ local function check_api_token()
     end
     local tokens = config_get("tokens")
     if not tokens then
-        log.info("no api token settings")
+        log.debug("no api token settings")
         return false
     end
     if not tokens[token] then
         return false
     end
-    log.info("api token auth: ", token)
+    log.debug("api token auth: ", token)
     return true
 end
 
@@ -159,8 +159,7 @@ function _M.init_worker()
         mapping(res.apis)
     end
     router = radixtree.new(req_mapping)
-    log.info("admin init")
-
+    log.debug("admin init")
 end
 
 function _M.http_admin()

@@ -8,7 +8,7 @@ nginx.pid
 t/servroot
 conf/app-dev.json
 #deps
-
+conf/app.json
 .travis/
 !.travis/ASF-Release.cfg
 bin/lj-releng

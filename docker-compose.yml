@@ -3,6 +3,9 @@ services:
   gateway:
     restart: unless-stopped
     build: .
+    environment:
+      - "CODO_GATEWAY.appName=cctest"
+      - "CODO_GATEWAY.admin.account.admin.info.roles.1=cctest"
     ports:
       - "8888:8888"
       - "11000:11000"

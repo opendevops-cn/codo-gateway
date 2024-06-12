@@ -8,7 +8,8 @@ ENV LANG en_US.UTF-8
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-COPY .  /usr/local/openresty/nginx/
+COPY . /usr/local/openresty/nginx/
+COPY ./conf/app.example.json /usr/local/openresty/nginx/conf/app.json
 
 WORKDIR /usr/local/openresty/nginx/
 VOLUME /usr/local/openresty/nginx/logs/

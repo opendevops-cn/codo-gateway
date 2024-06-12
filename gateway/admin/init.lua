@@ -75,7 +75,15 @@ local function check_api_token()
         log.debug("no api token settings")
         return false
     end
-    if not tokens[token] then
+
+    local in_tokens = false
+    for _, tk in pairs(tokens) do
+        if token == tk then
+            in_tokens = true
+            break
+        end
+    end
+    if not in_tokens then
         return false
     end
     log.debug("api token auth: ", token)
@@ -102,7 +110,7 @@ local function check_token()
     end
 
     local jwt_secret = config_get("admin").jwt_secret
-    local account = config_get("admin").account
+    local accounts = config_get("admin").accounts
 
     local session = jwt:verify(jwt_secret, token)
 
@@ -116,10 +124,23 @@ local function check_token()
         username = session.payload.data.username
     end
 
-    if not username or not account[username] then
+    if not username then
         resp.exit(ngx.HTTP_INTERNAL_SERVER_ERROR, "用户不存在")
     end
-    local login_user = account[username].info
+
+    local in_admin = false
+    for _, account_name in pairs(accounts) do
+        if account_name == username then
+            in_admin = true
+            break
+        end
+    end
+
+    if not in_admin then
+        resp.exit(ngx.HTTP_INTERNAL_SERVER_ERROR, "用户不存在")
+    end
+
+    local login_user = {}
     login_user.username = username
     ngx.ctx.admin_login_user = login_user
 end

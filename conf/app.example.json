@@ -14,13 +14,13 @@
     "token_secret": "xxxxxx"
   },
   "sso2internal": {
-    "sso_token_secret":  "xxxxxx",
+    "sso_token_secret": "xxxxxx",
     "sso_jwt_key": "sso_token",
-    "internal_token_secret":  "xxxxxx",
+    "internal_token_secret": "xxxxxx",
     "internal_jwt_key": "auth_key"
   },
   "mfa": {
-    "mfa_secret":  "xxxxxx",
+    "mfa_secret": "xxxxxx",
     "mfa_key": "mfa_key"
   },
   "plugins": [
@@ -51,23 +51,11 @@
   },
   "admin": {
     "jwt_secret": "xxxxxx",
-    "account": {
-      "admin": {
-        "password": "tainiubile",
-        "info": {
-          "roles": [
-            "admin"
-          ],
-          "introduction": "I am a super administrator",
-          "avatar": "https://xxx.com/1.gif",
-          "name": "管理员"
-        }
-      }
-    }
+    "accounts": [
+      "用户名1"
+    ]
   },
-  "tokens": {
-    "xxx": {
-      "desc": "系统默认 api token"
-    }
-  }
+  "tokens": [
+    "api_token_xxxx"
+  ]
 }

@@ -18,6 +18,8 @@ local json = require("app.core.json")
 local str_utils = require("app.utils.str_utils")
 local ngx_config = ngx.config
 local error = error
+local pairs = pairs
+local os = os
 
 local _M = {}
 
@@ -59,37 +61,57 @@ local app_config = {
     },
     admin = {
         jwt_secret = "xxxx",
-        account = {
-            admin = {
-                password = "tainiubile",
-                info = {
-                    roles = { "admin" },
-                    introduction = "I am a super administrator",
-                    avatar = "https://xxx.com/1.gif",
-                    name = "管理员"
-                }
-            }
-        }
+        accounts = { "admin" }
     },
-    tokens = {
-        ["xxx"] = {
-            desc = "系统默认 api token"
-        }
-    }
+    tokens = { "api_token_xxxx" }
 }
+
+local function splitStringByComma(inputString)
+    local result = {}
+    for match in (inputString .. ','):gmatch("(.-),") do
+        table.insert(result, match)
+    end
+    return result
+end
+
+local function is_array(t)
+    local maxIndex = 0
+    local count = 0
+
+    for k, _ in pairs(t) do
+        if type(k) == "number" then
+            maxIndex = math.max(maxIndex, k)
+            count = count + 1
+        else
+            return false -- 存在非数字键，认为是map
+        end
+    end
+
+    -- 键为连续的数字，认为是数组
+    return maxIndex == count
+end
 
 -- 用于递归地检查配置表并使用环境变量更新
 local function update_config_with_env(config, parent_key)
     for k, v in pairs(config) do
         local env_key = parent_key and (parent_key .. "." .. k) or k
         if type(v) == "table" then
-            -- 递归处理嵌套表
-            config[k] = update_config_with_env(v, env_key)
+            if is_array(v) then
+                -- 尝试从环境变量中获取新的配置值
+                local env_value = os.getenv(env_key)
+                if env_value then
+                    print("load from env === ", env_key, " env === ", env_value)
+                    config[k] = splitStringByComma(env_value)
+                end
+            else
+                -- 递归处理嵌套表
+                config[k] = update_config_with_env(v, env_key)
+            end
         else
             -- 尝试从环境变量中获取新的配置值
             local env_value = os.getenv(env_key)
-            print("env_key======", env_key)
             if env_value then
+                print("load from env === ", env_key, " env === ", env_value)
                 config[k] = env_value
             end
         end

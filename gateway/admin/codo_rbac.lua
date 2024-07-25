@@ -34,13 +34,30 @@ end
 
 local function remove()
     local data = cjson.decode(ngx.req.get_body_data())
-    local _, err = rbac_store.remove_rbac_rule(data.key)
-    if err then
-        log.error("delete service node error: ", err)
-        resp.exit(ngx.HTTP_INTERNAL_SERVER_ERROR, "删除API权限异常")
+
+    if data.key then
+        local _, err = rbac_store.remove_rbac_rule(data.key)
+        if err then
+            log.error("delete service node error: ", err)
+            resp.exit(ngx.HTTP_INTERNAL_SERVER_ERROR, "删除API权限异常")
+            return
+        end
+        resp.exit(ngx.HTTP_OK, "ok")
         return
     end
-    resp.exit(ngx.HTTP_OK, "ok")
+    if data.func_id then
+        local prefix = "/" .. tostring(data.func_id) .. "/"
+        local _, err = rbac_store.remove_rbac_rule_batch(prefix)
+        if err then
+            log.error("delete service node error: ", err)
+            resp.exit(ngx.HTTP_INTERNAL_SERVER_ERROR, "删除API权限异常")
+            return
+        end
+        resp.exit(ngx.HTTP_OK, "ok")
+        return
+    end
+
+    resp.exit(ngx.HTTP_INTERNAL_SERVER_ERROR, "无效的删除操作, func_id & key 均为空")
 end
 
 local function save()
@@ -62,20 +79,20 @@ end
 local _M = {
     apis = {
         {
-            paths = {[[/api/admin/rbac/list]]},
-            methods = {"GET", "POST"},
+            paths = { [[/api/admin/rbac/list]] },
+            methods = { "GET", "POST" },
             handler = list
         },
         {
-            paths = {[[/api/admin/rbac/remove]]},
-            methods = {"DELETE", "POST"},
+            paths = { [[/api/admin/rbac/remove]] },
+            methods = { "DELETE", "POST" },
             handler = remove
         },
---        {
---            paths = {[[/api/mg/admin/rbac/save]]},
---            methods = {"POST"},
---            handler = save
---        }
+        --        {
+        --            paths = {[[/api/mg/admin/rbac/save]]},
+        --            methods = {"POST"},
+        --            handler = save
+        --        }
     }
 }
 

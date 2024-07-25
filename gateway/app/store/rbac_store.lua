@@ -138,6 +138,18 @@ end
 
 _M.remove_rbac_rule = remove_rbac_rule
 
+-- 批量删除权限
+local function remove_rbac_rule_batch(prefix)
+    local _, err = etcd.rmdir(get_etcd_key(prefix))
+    if not err then
+        refresh_crbac()
+    end
+    log.error("remove_rbac_rule_batch: ", err)
+    return err
+end
+
+_M.remove_rbac_rule_batch = remove_rbac_rule_batch
+
 -- 保存RBAC配置
 function _M.save_rbac_rules(data)
     --    data.key = data.prefix
